@@ -1,5 +1,8 @@
-[{
+[
+    {
         "name": "Tilia cordata",
+        "image": "Tilia cordata Tilia platyphyllos .png",
+        "multipleNames": "Tilia cordata, Tilia platyphyllos",
         "coeff": {
             "a": 264.073,
             "b": 5.5834,
@@ -16,6 +19,8 @@
     },
     {
         "name": "Fraxinus excelsior",
+        "image": "Fraxinus excelsior .png",
+        "multipleNames": "Fraxinus excelsior",
         "coeff": {
             "a": 210.1153,
             "b": 5.3523,
@@ -32,6 +37,8 @@
     },
     {
         "name": "Aesculus hipocastanum",
+        "image": "Aesculus hippocastanum .png",
+        "multipleNames": "Aesculus hippocastanum",
         "coeff": {
             "a": 54.2714,
             "b": 4.0709,
@@ -48,6 +55,8 @@
     },
     {
         "name": "Populus alba",
+        "image": "Populus alba Populus nigra .png",
+        "multipleNames": "Populus alba, Populus nigra",
         "coeff": {},
         "ageTable": {
             "20": 30,
@@ -59,6 +68,8 @@
     },
     {
         "name": "Carpinus betulus",
+        "image": "Carpinus betulus Crataegus Fagus silvatika .png",
+        "multipleNames": "Carpinus betulus, Crataegus Fagus silvatika",
         "coeff": {},
         "ageTable": {
             "20": 7,
@@ -70,6 +81,8 @@
     },
     {
         "name": "Robinia pseudoacacia",
+        "image": "Robinia pseudoacacia .png",
+        "multipleNames": "Robinia pseudoacacia",
         "coeff": {},
         "ageTable": {
             "20": 13,
@@ -81,6 +94,8 @@
     },
     {
         "name": "Pinus silvestris",
+        "image": "Pinus silvestris .png",
+        "multipleNames": "Pinus silvestris",
         "coeff": {},
         "ageTable": {
             "20": 12,
@@ -92,6 +107,8 @@
     },
     {
         "name": "Betula verrucosa",
+        "image": "Betula verrucosa Betula pubescens .png",
+        "multipleNames": "Betula verrucosa, Betula pubescens",
         "coeff": {},
         "ageTable": {
             "20": 22,
@@ -102,6 +119,8 @@
     },
     {
         "name": "Thuja occidentalis",
+        "image": "Thuja occidentalis .png",
+        "multipleNames": "Thuja occidentalis",
         "coeff": {},
         "ageTable": {
             "20": 5,
@@ -112,6 +131,8 @@
     },
     {
         "name": "Acer negundo",
+        "image": "Acer negundo Salix alba .png",
+        "multipleNames": "Acer negundo, Salix alba",
         "coeff": {},
         "ageTable": {
             "20": 27,
@@ -121,6 +142,8 @@
     },
     {
         "name": "Ulmus laevis",
+        "image": "Ulmus laevis .png",
+        "multipleNames": "Ulmus laevis",
         "coeff": {},
         "ageTable": {
             "20": 15,
@@ -132,6 +155,8 @@
     },
     {
         "name": "Larix decidua",
+        "image": "Larix decidua .png",
+        "multipleNames": "Larix decidua",
         "coeff": {},
         "ageTable": {
             "20": 17,
@@ -143,6 +168,8 @@
     },
     {
         "name": "Picea excelsa",
+        "image": "Picea excelsa Picea pungens .png",
+        "multipleNames": "Picea excelsa, Picea pungens",
         "coeff": {},
         "ageTable": {
             "20": 12,
@@ -154,6 +181,8 @@
     },
     {
         "name": "Quercus petraea",
+        "image": "Quercus petraea .png",
+        "multipleNames": "Quercus petraea",
         "coeff": {},
         "ageTable": {
             "20": 9,
@@ -165,6 +194,8 @@
     },
     {
         "name": "Acer platanoides",
+        "image": "Acer platanoides Acer pseudoplatanus Platanus acerifolia .png",
+        "multipleNames": "Acer platanoides, Acer pseudoplatanus, Platanus acerifolia",
         "coeff": {},
         "ageTable": {
             "20": 12,
@@ -176,6 +207,8 @@
     },
     {
         "name": "Alnus glutinosa",
+        "image": "Alnus glutinosa Prunus padus .png",
+        "multipleNames": "Alnus glutinosa, Prunus padus",
         "coeff": {},
         "ageTable": {
             "20": 17,
@@ -183,4 +216,5 @@
             "70": 50,
             "100": 70
         }
-    }  ]
+    }
+]

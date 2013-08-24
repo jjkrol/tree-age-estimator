@@ -14,12 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <title>Kalkulator</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Tree Age Estimator</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="css/jquery.lightbox-0.5.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
     <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
@@ -38,7 +39,7 @@
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
                 <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-            <a class="brand" href="#">Kalkulator wieku drzewa</a>
+            <a class="brand" href="#">Tree Age Estimator</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -46,7 +47,7 @@
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#instrukcja">Instrukcja</a>
+                        <a href="#instrukcja">Usage</a>
                     </li>
                     <li>
                         <a href="#metody">Metody</a>
@@ -82,16 +83,16 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="form-group">
-                        <label>Wysokość</label>
+                        <label>Height</label>
                         <input id="wys" ng-model="height" class="form-control" type="text" placeholder="[m]">
                     </div>
                     <div class="row">
                     <div class="form-group piersnica col-xs-6">
-                        <label>Pierśnica</label>
+                        <label><abbr title="Diameter at Breast Height">DBH</abbr></label>
                         <input id="pier" ng-model="dbh" type="text" class="form-control" placeholder="[cm]">
                     </div>
                     <div class="form-group obwod col-xs-6">
-                        <label>Obwód</label>
+                        <label>Circumference</label>
                         <input id="obw" ng-model="circumference" type="text" class="form-control" placeholder="[cm]">
                     </div>
                     </div>
@@ -150,97 +151,48 @@
 <div class="row">
 <div class="col-sm-4">
     <div class="row">
-        <div id="instrukcja">
-            <h3>Instrukcja</h3>
-
-            <p>Wpisz wysokość drzewa. Jeśli jej nie znasz, wpisz tylko średnicę lub obwód (pamiętaj
-                że obliczenia będą wtedy mniej dokładne).
-                Następnie w okienku poniżej wpisz łacińską nazwę drzewa - gdy zaczniesz pisać,
-                na dole pokażą się propozycje drzew.
-                Żeby obliczyć wynik naciśnij jednocześnie klawisze <kbd>shift</kbd> i <kbd>enter</kbd>
-                lub kliknij przycisk <strong>oblicz</strong></p>
-        </div>
+        <div>
+            <h3>Usage</h3>
+            <ol>
+                <li>Input the height of the tree. If you don't know the height, you can leave that field
+                blank, but the estimation will probably be less accurate</li>
+                <li>Provide the diameter at breast height (1.3 m) or the circumference of the tree at the height of 1.3 m.</li>
+                <li>Choose the species form the dropdown list. To find one - just start typing.</li>
+                <li>Click the <strong>estimate</strong></li>
+            </ol>
+         </div>
     </div>
     <div class="row">
         <div id="metody">
-            <h3>Metody</h3>
-            <h4>Model wg Jana Łukaszkiewicza</h4>
-            <dl>
-                <dt>
-                    Potrzebne dane
-                </dt>
-                <dd>
-                    pierśnica/obwód, wysokość
-                </dd>
-                <dt>
-                    Dokładność
-                </dt>
-                <dd>
-                    <span class="label label-success">dobra</span>
-                </dd>
-            </dl>
+            <h3>Methods</h3>
+            <h4>Jan Łukaszkiewicz method</h4>
             <p>
-                Funkcja wieku drzewa względem jego wieku i pierśnicy, otrzymana
-                za pomocą regresji liniowej poprzez przybliżenie do funkcji wykładniczej
-                o ogólnym wzorze:
+                This methods is implemented only for <em>Tilia cordata</em>,
+                <em>Fraxinus excelsior</em> and <em>Aesculus hipocastanum</em>. It is based
+                on an assumption, that the tree's age is the exponential function of its
+                diameter and height. The coefficients for the species where acquired by using
+                linear regression on a 400 trees sample from Warsaw.
             </p>
-
+            <h4>Age tables by prof. dr. Longin Majdecki</h4>
             <p>
-                Współczynniki dla trzech gatunków drzew () Łukaszkiewicz określił w swojej pracy
-                po zbadaniu prawie 400 Warszawskich drzew.
-            </p>
-            <h4>Tabele wiekowe prof. dr. Longina Majdeckiego</h4>
-            <dl>
-                <dt>
-                    Potrzebne dane
-                </dt>
-                <dd>
-                    pierśnica/obwód
-                </dd>
-                <dt>
-                    Dokładność
-                </dt>
-                <dd>
-                    <span class="label label-warning">średnia</span>
-                </dd>
-            </dl>
-            <p>
-                Określone przez L. Majdeckiego tabele pozwalają na przybliżone określenie wieku drzewa
-                poprzez poprowadzenie prostych pomiędzy kolejnymi punktami.
-            </p>
-            <h4>Zakres wg L. Majdeckiego</h4>
-            <dl>
-                <dt>
-                    Potrzebne dane
-                </dt>
-                <dd>
-                    pierśnica/obwód
-                </dd>
-                <dt>
-                    Dokładność
-                </dt>
-                <dd>
-							<span class="label label-important">
-								mała
-							</span>
-                </dd>
-            </dl>
-            <p>
-                Wynik bezpośrednio pobrany z tablicy dla odpowiedniego gatunku.
+                In his work prof. Lingin Majdecki stated an estimate age ranges for certain diameter
+                ranges of many tree species. It is possible to get a more accurate estimation by
+                linear interpolation between these ranges. The estimator returns both the range and
+                interpolated value (if the calculation is possible).
             </p>
         </div>
         <div class="row">
             <div class="col-sm-4" id="do-pobrania">
-                <h3>Do pobrania</h3>
+                <h3>Downloads</h3>
                 <ul>
-                    <li><a href="files/druk.pdf">Wszystkie wykresy w jednym pliku pdf <i
+                    <li><a href="files/print.pdf">Plots in one pdf file <i
                             class="icon-arrow-down"></i></a><br/></li>
-                    <li><a href="files/wykresy.zip">Wykresy w oddzielnych plikach png <i
+                    <li><a href="files/charts.zip">Plots in separate png files <i
                             class="icon-arrow-down"></i></a></li>
                 </ul>
             </div>
             <div class="col-sm-4" id="zrodla">
-                <h3>Źródła</h3>
+                <h3>Bibliography</h3>
                 <ul>
                     <li>
                         <a href="http://www.ptd.pl/download/2010/25-38.pdf">
@@ -258,16 +210,16 @@
     </div>
 </div>
 <div class="col-sm-4 tabela" id="tabela">
-    <h3>Tabela</h3>
-    <small>Opracowana przez prof. dr. Longina Majdeckiego</small>
+    <h3>Age table</h3>
+    <small>by prof. dr. Longin Majdecki</small>
     <table class="table table-condensed">
         <thead>
         <tr>
             <td colspan="2"></td>
-            <th colspan="5">Wiek (lata)</th>
+            <th colspan="5">Age [years]</th>
         </tr>
         <tr>
-            <th colspan="2">Gatunek</th>
+            <th colspan="2">Species</th>
             <td class="span3">20</td>
             <td>40</td>
             <td>70</td>
@@ -276,158 +228,24 @@
         </tr>
         <tr>
             <td colspan="2"></td>
-            <th colspan="5">Pierśnica (cm)</th>
+            <th colspan="5"><abbr title="Diameter at Breast Height">DBH</abbr> [cm]</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td> Topola biała Topola czarna</td>
-            <td> Populus alba Populus nigra</td>
-            <td> 35</td>
-            <td>70</td>
-            <td> 100</td>
-            <td>125</td>
-            <td>145</td>
+        <tr ng-repeat="tree in trees">
+            <td>{{tree.name}}</td>
+            <td></td>
+            <td>{{tree.ageTable[20]}}</td>
+            <td>{{tree.ageTable[40]}}</td>
+            <td>{{tree.ageTable[70]}}</td>
+            <td>{{tree.ageTable[100]}}</td>
+            <td>{{tree.ageTable[120]}}</td>
         </tr>
-        <tr>
-            <td> Lipa drobnolistna Lipa szerokolistna</td>
-            <td> Tilia cordata Tilia platyphyllos</td>
-            <td> 17</td>
-            <td>35</td>
-            <td>57</td>
-            <td>78</td>
-            <td>92</td>
-        </tr>
-        <tr>
-            <td> Grab zwyczajny Głóg Buk pospolity</td>
-            <td> Carpinus betulus Crataegus Fagus silvatika</td>
-            <td> 7</td>
-            <td>15</td>
-            <td>35</td>
-            <td>50</td>
-            <td> 60</td>
-        </tr>
-        <tr>
-            <td> Robinia akacjowa</td>
-            <td> Robinia pseudoacacia</td>
-            <td> 13</td>
-            <td>26</td>
-            <td>45</td>
-            <td>62</td>
-            <td> 75</td>
-        </tr>
-        <tr>
-            <td> Sosna zwyczajna</td>
-            <td> Pinus silvestris</td>
-            <td> 12</td>
-            <td> 25</td>
-            <td> 50</td>
-            <td>68</td>
-            <td> 80</td>
-        </tr>
-        <tr>
-            <td> Klon zwyczajny Klon jawor Platan klonolistny</td>
-            <td> Acer platanoides Acer pseudoplatanus Platanus acerifolia</td>
-            <td> 12</td>
-            <td>25</td>
-            <td>40</td>
-            <td>55</td>
-            <td> 67</td>
-        </tr>
-        <tr>
-            <td> Jesion wzniosły</td>
-            <td> Fraxinus excelsior</td>
-            <td> 12</td>
-            <td> 26</td>
-            <td> 45</td>
-            <td>60</td>
-            <td> 72</td>
-        </tr>
-        <tr>
-            <td> Kasztanowiec zwyczajny</td>
-            <td> Aesculus hippocastanum</td>
-            <td> 20</td>
-            <td>38</td>
-            <td>65</td>
-            <td>87</td>
-            <td>105</td>
-        </tr>
-        <tr>
-            <td> Dąb szpulkowy Dąb bezszpulkowy</td>
-            <td> Quercus petraea</td>
-            <td> 9</td>
-            <td>18</td>
-            <td>35</td>
-            <td>47</td>
-            <td>55</td>
-        </tr>
-        <tr>
-            <td> Świerk pospolity Świerk kłujący</td>
-            <td> Picea excelsa Picea pungens</td>
-            <td> 12</td>
-            <td>25</td>
-            <td> 50</td>
-            <td>70</td>
-            <td> 82</td>
-        </tr>
-        <tr>
-            <td> Modrzew europejski</td>
-            <td> Larix decidua</td>
-            <td> 17</td>
-            <td>35</td>
-            <td>52</td>
-            <td>67</td>
-            <td>79</td>
-        </tr>
-        <tr>
-            <td> Klon polny Wierzba biała</td>
-            <td> Acer negundo Salix alba</td>
-            <td> 27</td>
-            <td>54</td>
-            <td>85</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td> Brzoza brodawkowata Brzoza omszona</td>
-            <td> Betula verrucosa Betula pubescens</td>
-            <td> 22</td>
-            <td>34</td>
-            <td>57</td>
-            <td>79</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td> Wiąz szypułkowy</td>
-            <td> Ulmus laevis</td>
-            <td> 15</td>
-            <td>30</td>
-            <td>51</td>
-            <td>73</td>
-            <td>90</td>
-        </tr>
-        <tr>
-            <td> Tuja - żywotnik</td>
-            <td> Thuja occidentalis</td>
-            <td> 5</td>
-            <td>10</td>
-            <td>20</td>
-            <td>35</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>Olsza czarna Czeremcha zwyczajna</td>
-            <td> Alnus glutinosa Prunus padus</td>
-            <td> 17</td>
-            <td>30</td>
-            <td>50</td>
-            <td>70</td>
-            <td>-</td>
-        </tr>
-        </tbody>
+      </tbody>
     </table>
 </div>
-<div class="span4 plots" id="wykresy">
+
+<div class="col-sm-4 plots" id="wykresy">
     <h3>Wykresy</h3>
 
     <p>
@@ -435,106 +253,15 @@
         Do każdego wykresu został dodany punkt (0,5), ponieważ uważa się, że drzewo potrzebuje około 5 lat aby
         osiągnąć wysokość 1,3 m
     </p>
-    <ul class="thumbnails">
-        <li class="col-sm-2">
-            <a rel="lightbox" href="img/wykresy/Acer negundo Salix alba .png" class="thumbnail img-polaroid">
-                <img src="img/wykresy/thumbs/Acer negundo Salix alba .png" alt="">
+    <ul class="thumbnails list-unstyled">
+        <li class="col-sm-6" ng-repeat="tree in trees">
+            <a rel="lightbox" href="img/wykresy/{{tree.image}}" class="thumbnail img-polaroid">
+                <img ng-src="img/wykresy/thumbs/{{tree.image}}" alt="">
             </a>
 
-            <p>Acer negundo, Salix alba</p>
+            <p>{{tree.multipleNames}}</p>
         </li>
-        <li class="col-sm-2">
-            <a rel="lightbox" href="img/wykresy/Acer platanoides Acer pseudoplatanus Platanus acerifolia .png"
-               class="thumbnail img-polaroid">
-                <img src="img/wykresy/thumbs/Acer platanoides Acer pseudoplatanus Platanus acerifolia .png" alt="">
-            </a>
 
-            <p>Acer platanoides, Acer pseudoplatanus, Platanus acerifolia</p>
-        </li>
-        <!--<li class="span2">
-          <a rel="lightbox" href="img/wykresy/Aesculus hippocastanum .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Aesculus hippocastanum .png" alt="">
-          </a>
-          <p>Aesculus hippocastanum</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Alnus glutinosa Prunus padus .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Alnus glutinosa Prunus padus .png" alt="">
-          </a>
-          <p>Alnus glutinosa, Prunus padus</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Betula verrucosa Betula pubescens .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Betula verrucosa Betula pubescens .png" alt="">
-          </a>
-          <p>Betula verrucosa, Betula pubescens</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Carpinus betulus Crataegus Fagus silvatika .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Carpinus betulus Crataegus Fagus silvatika .png" alt="">
-          </a>
-          <p>Carpinus betulus, Crataegus Fagus silvatika</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Fraxinus excelsior .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Fraxinus excelsior .png" alt="">
-          </a>
-          <p>Fraxinus excelsior</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Larix decidua .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Larix decidua .png" alt="">
-          </a>
-          <p>Larix decidua</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Picea excelsa Picea pungens .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Picea excelsa Picea pungens .png" alt="">
-          </a>
-          <p>Picea excelsa, Picea pungens</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Pinus silvestris .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Pinus silvestris .png" alt="">
-          </a>
-          <p>Pinus silvestris</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Populus alba Populus nigra .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Populus alba Populus nigra .png" alt="">
-          </a>
-          <p>Populus alba, Populus nigra</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Quercus petraea .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Quercus petraea .png" alt="">
-          </a>
-          <p>Quercus petraea</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Robinia pseudoacacia .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Robinia pseudoacacia .png" alt="">
-          </a>
-          <p>Robinia pseudoacacia</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Thuja occidentalis .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Thuja occidentalis .png" alt="">
-          </a>
-          <p>Thuja occidentalis</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Tilia cordata Tilia platyphyllos .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Tilia cordata Tilia platyphyllos .png" alt="">
-          </a>
-          <p>Tilia cordata, Tilia platyphyllos</p>
-        </li>
-        <li class="span2">
-          <a rel="lightbox" href="img/wykresy/Ulmus laevis .png" class="thumbnail img-polaroid">
-            <img src="img/wykresy/thumbs/Ulmus laevis .png" alt="">
-          </a>
-          <p>Ulmus laevis</p>
-        </li>-->
     </ul>
 </div>
 </div>
