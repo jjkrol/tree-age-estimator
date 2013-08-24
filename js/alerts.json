@@ -1,0 +1,21 @@
+{
+    "no-height": {
+        "content": "Nie wpisałaś (lub wpisałeś) wysokości drzewa. Wpisz ją, żeby skorzystać ze wszystkich metod obliczania!"
+    },
+    "no-dbh": {
+
+        "content": "Aby policzyć wiek drzewa muszę znać pierśnicę. Wpisz jej wartość lub obwód drzewa na wysokości 1,3 m!"
+    },
+    "too-small": {
+
+        "content": "Wysokość jest za mała. Jeśli drzewo ma mniej niż 1,3 m, nie ma jak zmierzyć pierśnicy. Takie małe drzewko na pewno ma mniej niż 5 lat"
+    },
+    "no-species": {
+
+        "content": "Nie wybrałeś drzewa. Aby wybrać odpowiednie drzewo, zacznij pisać w okienku \"gatunek\" jego łacińską nazwę."
+    },
+    "wrong-species": {
+
+        "content": "Gatunku, który wybrałeś nie ma chyba na liście. Sprawdź jescze raz, czy wszystko dobrze wpisałeś!"
+    }
+}

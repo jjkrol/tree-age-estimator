@@ -1,32 +1,3 @@
-var drzewa = {};
-drzewa["Tilia cordata"] = new Tiliacordata();
-drzewa["Tilia platyphyllos"] = new Tiliacordata();
-drzewa["Fraxinus excelsior"] = new Fraxinusexcelsior();
-drzewa["Aesculus hippocastanum"] = new Aesculushipocastanum();
-drzewa["Populus alba"] = new Populusalba();
-drzewa["Populus nigra"] = new Populusalba();
-drzewa["Carpinus betulus"] = new Carpinusbetulus();
-drzewa["Crataegus"] = new Carpinusbetulus();
-drzewa["Fagus silvatika"] = new Carpinusbetulus();
-drzewa["Robinia pseudoacacia"] = new Robiniapseudoacacia();
-drzewa["Pinus silvestris"] = new Pinussilvestris();
-drzewa["Acer platanoides"] = new Acerplatanoides();
-drzewa["Acer pseudoplatanus"] = new Acerplatanoides();
-drzewa["Platanus acerifolia"] = new Acerplatanoides();
-drzewa["Quercus petraea"] = new Quercuspetraea();	
-drzewa["Quercus robur"] = new Quercuspetraea(); 
-drzewa["Picea excelsa"] = new Piceaexcelsa();
-drzewa["Picea pungens"] = new Piceaexcelsa(); 
-drzewa["Larix decidua"] = new Larixdecidua();
-drzewa["Ulmus laevis"] = new Ulmuslaevis();
-drzewa["Acer negundo"] = new Acernegundo();
-drzewa["Salix alba"] = new Acernegundo();
-drzewa["Betula verrucosa"] = new Betulaverrucosa();
-drzewa["Betula pubescens"] = new Betulaverrucosa();
-drzewa["Thuja occidentalis"] = new Thujaoccidentalis();
-drzewa["Alnus glutinosa"] = new Alnusglutinosa();
-drzewa["Prunus padus"] = new Alnusglutinosa();
-
 var gatunek, wys, pier, obw;
 function wczytaj_dane() {
 	gatunek = $("#gat").val();
