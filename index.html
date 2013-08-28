@@ -26,6 +26,21 @@
     <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
     <script src="js/treesCtrl.js"></script>
     <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    <script>
+        function equalHeight(group) {
+            tallest = 0;
+            group.each(function() {
+                thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+            group.each(function() { $(this).height(tallest); });
+        }
+        $(document).ready(function() {
+            equalHeight($(".thumbnail-container"));
+        });
+    </script>
 </head>
 <body ng-controller="TreesCtrl">
 <!--[if lt IE 7]>
@@ -92,17 +107,17 @@
                     <div class="row">
                     <div class="form-group piersnica col-xs-6">
                         <label><abbr title="Diameter at Breast Height">DBH</abbr></label>
-                        <input id="pier" ng-model="dbh" ng-change="updateCircumference()" type="text" class="form-control" placeholder="[cm]">
+                        <input id="pier" ng-model="dbh" ng-change="updateCircumference()" type="text" class="form-control" placeholder="[cm]" ng-required="!circumference">
                     </div>
                     <div class="form-group obwod col-xs-6">
                         <label>Circumference</label>
-                        <input id="obw" ng-model="circumference" ng-change="updateDBH()" type="text" class="form-control" placeholder="[cm]">
+                        <input id="obw" ng-model="circumference" ng-change="updateDBH()" type="text" class="form-control" placeholder="[cm]" ng-required="!dbh">
                     </div>
                     </div>
 
                     <div class="form-group">
                         <label>Gatunek</label>
-                        <input type="text" class="form-control" ng-model="chosenTree" typeahead="tree as tree.name for tree in trees">
+                        <input type="text" class="form-control" ng-model="chosenTree" typeahead="tree as tree.name for tree in trees" ng-required="true">
                     </div>
 
                     <button ng-click="calculate()" id="licz" class="btn btn-primary">
@@ -115,12 +130,12 @@
     </div>
 
     <div class="col-sm-8">
-        <div class="row wyniki">
-            <div ng-repeat="result in results" ng-show="resultsVisible" id="result" class="{{result.class}}">
-                <div class="wynik">
+        <div class="row results">
+            <div ng-repeat="result in results" ng-show="resultsVisible" class="{{result.class}}">
+                <div class="age">
                     {{result.age}}
                 </div>
-                <div class="wyjaśnienie">
+                <div class="explanation">
                     {{result.explanation}}
                 </div>
             </div>
@@ -228,16 +243,13 @@
         Do każdego wykresu został dodany punkt (0,5), ponieważ uważa się, że drzewo potrzebuje około 5 lat aby
         osiągnąć wysokość 1,3 m
     </p>
-    <ul class="thumbnails list-unstyled">
-        <li class="col-sm-6" ng-repeat="tree in trees">
+        <div class="col-sm-6" class='thumbnail-container' ng-repeat="tree in trees">
             <a rel="lightbox" href="img/wykresy/{{tree.image}}" class="thumbnail img-polaroid">
                 <img ng-src="img/wykresy/thumbs/{{tree.image}}" alt="">
             </a>
-
             <p>{{tree.multipleNames}}</p>
-        </li>
+        </div>
 
-    </ul>
 </div>
 </div>
 

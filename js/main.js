@@ -72,7 +72,8 @@ function licz() {
 }
 
 $(document).ready(function() {
-	$('a[rel="lightbox"]').lightBox({
+    equalHeight($(".thumbnail"));
+    $('a[rel="lightbox"]').lightBox({
 		imageLoading : 'img/loading.gif',
 		imageBtnClose : 'img/close.gif',
 		imageBtnPrev : 'img/prev.gif',
@@ -92,23 +93,11 @@ $(document).ready(function() {
 	$("#gat").tooltip({
 		title : "Zacznij pisać. Spacja aby zobaczyć wszystkie"
 	})
-	$("#obw").change(function() {
-		$("#obw").fadeTo(100, 1);
-		$("#pier").fadeTo(100, 0.5);
-		$("#pier").val('');
-	})
-	$("#pier").change(function() {
-		$("#pier").fadeTo(100, 1);
-		$("#obw").fadeTo(100, 0.5);
-		$("#obw").val('');
-	})
+
 	$('input').keypress(function(e) {
 		if (e.which == 13 && e.shiftKey) {
 			$('#licz').click();
 		}
 	});
-	$("#licz").click(function() {
-		$(".wyniki > div").fadeOut();
-		licz();
-	})
+
 })

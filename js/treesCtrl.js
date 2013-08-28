@@ -1,8 +1,7 @@
 var app = angular.module('trees-app', ['ui.bootstrap']);
-//todo validate inputs
 //todo add readme
-//todo make results look better
 // todo end translation
+// todo repair thumbnails
 function TreesCtrl($scope, $http) {
     $scope.result = 'Welcome!';
     $scope.resultClass = 'alert alert-success';
@@ -29,15 +28,22 @@ function TreesCtrl($scope, $http) {
 
     $scope.calculate = function () {
         $scope.resultsVisible = false;
+        lukaszkiewicz = lukaszkiewicz($scope.chosenTree, $scope.dbh, $scope.height);
         majdecki = majdecki($scope.chosenTree, $scope.dbh);
-        $scope.results = [
-            {"age": lukaszkiewicz($scope.chosenTree, $scope.dbh, $scope.height),
+        $scope.results = [];
+        if (lukaszkiewicz) {
+            $scope.results = [$scope.results, {"age": lukaszkiewicz,
                 "class": "alert alert-success",
-                "explanation": "J. Łukaszkiewicz's model"},
-            {"age": majdecki.age,
+                "explanation": "J. Łukaszkiewicz's model"}];
+        }
+        if (majdecki.age) {
+            $scope.results = [$scope.results, {"age": majdecki.age,
                 "class": "alert alert-info",
                 "explanation": "L. Majdecki's age table interpolation"
-            },
+            }];
+        }
+
+        $scope.results = [$scope.results,
             {"age": majdecki.lowerRange + " - " + majdecki.upperRange,
                 "class": "alert alert-warning",
                 "explanation": "age range from the age table by L. Majdecki"
