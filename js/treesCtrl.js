@@ -1,6 +1,14 @@
-angular.module('trees-app', ['ui.bootstrap']);
-
+var app = angular.module('trees-app', ['ui.bootstrap']);
+//todo validate inputs
+//todo add readme
+//todo make results look better
+// todo end translation
 function TreesCtrl($scope, $http) {
+    $scope.result = 'Welcome!';
+    $scope.resultClass = 'alert alert-success';
+    $scope.explanation = 'Feel free to use the calculator on the left';
+    $scope.resultsVisible = true;
+
     $http.get('js/trees.json').success(function (data) {
         $scope.trees = data;
     });
@@ -19,30 +27,23 @@ function TreesCtrl($scope, $http) {
         }
     };
 
-    var resultTypes = {
-        "lukaszkiewicz": {
-            "resultClass": "alert alert-success",
-            "explanation": "model J. Łukaszkiewicza"
-        },
-        "majdecki": {
-            "resultClass": "alert alert-info",
-            "explanation": "funkcja na podstawie tabeli wiekowej prof. dr Longina Majdeckiego"
-        },
-        "majdecki-range": {
-            "resultClass": "alert alert-warning",
-            "explanation": "zakres z tabeli wiekowej prof. dr Longina Majdeckiego"
-        }
-    }
     $scope.calculate = function () {
-        /*$scope.result = lukaszkiewicz($scope.chosenTree, $scope.dbh, $scope.height);
-         $scope.resultClass = resultTypes.lukaszkiewicz.resultClass;
-         $scope.explanation = resultTypes.lukaszkiewicz.explanation;
-         $("#result").show();     */
-
-        console.log(majdecki($scope.chosenTree, $scope.dbh));
-        /* $scope.resultClass = resultTypes.lukaszkiewicz.resultClass;
-         $scope.explanation = resultTypes.lukaszkiewicz.explanation;
-         $("#result").show();     */
+        $scope.resultsVisible = false;
+        majdecki = majdecki($scope.chosenTree, $scope.dbh);
+        $scope.results = [
+            {"age": lukaszkiewicz($scope.chosenTree, $scope.dbh, $scope.height),
+                "class": "alert alert-success",
+                "explanation": "J. Łukaszkiewicz's model"},
+            {"age": majdecki.age,
+                "class": "alert alert-info",
+                "explanation": "L. Majdecki's age table interpolation"
+            },
+            {"age": majdecki.lowerRange + " - " + majdecki.upperRange,
+                "class": "alert alert-warning",
+                "explanation": "age range from the age table by L. Majdecki"
+            }
+        ];
+        $scope.resultsVisible = true;
 
     };
 

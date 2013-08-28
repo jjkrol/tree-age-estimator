@@ -1,16 +1,10 @@
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
 body {
-    padding-top: 60px;
     padding-bottom: 40px;
 }
+/*todo clean this*/
 #lightbox-image{
 	max-height: 80%;
 	max-width: 80%;
-}
-.wyniki > div{
-	display: none;	
 }
 .wyniki div > div{
 	display: inline;
@@ -18,9 +12,7 @@ body {
 .wyniki div .wynik{
 	font-weight: bold;
 }
-.tabela{
-min-width: 370px;	
-}
+
 .plots .thumbnail, .plots .thumbnail p{
 	width: 140px;
 	height: 140px;

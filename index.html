@@ -34,46 +34,49 @@
     experience this site.</p>
 <![endif]-->
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-            <a class="brand" href="#">Tree Age Estimator</a>
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Tree Age Estimator</a>
+    </div>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#instrukcja">Usage</a>
-                    </li>
-                    <li>
-                        <a href="#metody">Metody</a>
-                    </li>
-                    <li>
-                        <a href="#tabela">Tabela</a>
-                    </li>
-                    <li>
-                        <a href="#wykresy">Wykresy</a>
-                    </li>
-                    <li>
-                        <a href="#do-pobrania">Do pobrania</a>
-                    </li>
-                    <li>
-                        <a href="#zrodla">Źródła</a>
-                    </li>
-                    <li>
-                        <a href="#contact"> </a>
-                    </li>
 
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#usage">Usage</a>
+            </li>
+            <li>
+                <a href="#methods">Methods</a>
+            </li>
+            <li>
+                <a href="#table">Age table</a>
+            </li>
+            <li>
+                <a href="#plots">Plots</a>
+            </li>
+            <li>
+                <a href="#downloads">Downloads</a>
+            </li>
+            <li>
+                <a href="#bibliography">Bibliography</a>
+            </li>
+            <li>
+                <a href="#contact"> </a>
+            </li>
+
+        </ul>
     </div>
 </div>
+
 
 <div class="container">
 <div class="row">
@@ -110,48 +113,24 @@
             </div>
         </div>
     </div>
+
     <div class="col-sm-8">
         <div class="row wyniki">
-            <div id="result" class="{{resultClass}}">
+            <div ng-repeat="result in results" ng-show="resultsVisible" id="result" class="{{result.class}}">
                 <div class="wynik">
-                    {{result}}
+                    {{result.age}}
                 </div>
                 <div class="wyjaśnienie">
-                    {{explanation}}
+                    {{result.explanation}}
                 </div>
             </div>
-            <div class="" id="wiek_luk">
-                <div class="wynik">
-
-                </div>
-                <div class="wyjasnienie">
-
-                </div>
-            </div>
-            <div class="" id="wiek_majd">
-                <div class="wynik">
-
-                </div>
-                <div class="wyjasnienie">
-
-                </div>
-            </div>
-            <div class="alert alert-error" id="zakres_majd">
-                <div class="wynik">
-
-                </div>
-                <div class="wyjasnienie">
-
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
+
 <div class="row">
 <div class="col-sm-4">
-    <div class="row">
-        <div>
+         <div id="usage">
             <h3>Usage</h3>
             <ol>
                 <li>Input the height of the tree. If you don't know the height, you can leave that field
@@ -161,9 +140,7 @@
                 <li>Click the <strong>estimate</strong></li>
             </ol>
          </div>
-    </div>
-    <div class="row">
-        <div id="metody">
+        <div id="methods">
             <h3>Methods</h3>
             <h4>Jan Łukaszkiewicz method</h4>
             <p>
@@ -181,8 +158,7 @@
                 interpolated value (if the calculation is possible).
             </p>
         </div>
-        <div class="row">
-            <div class="col-sm-4" id="do-pobrania">
+            <div id="downloads">
                 <h3>Downloads</h3>
                 <ul>
                     <li><a href="files/print.pdf">Plots in one pdf file <i
@@ -191,7 +167,7 @@
                             class="icon-arrow-down"></i></a></li>
                 </ul>
             </div>
-            <div class="col-sm-4" id="zrodla">
+            <div id="bibliography">
                 <h3>Bibliography</h3>
                 <ul>
                     <li>
@@ -206,10 +182,9 @@
                 </ul>
 
             </div>
-        </div>
-    </div>
 </div>
-<div class="col-sm-4 tabela" id="tabela">
+
+<div class="col-sm-4 tabela" id="table">
     <h3>Age table</h3>
     <small>by prof. dr. Longin Majdecki</small>
     <table class="table table-condensed">
@@ -245,7 +220,7 @@
     </table>
 </div>
 
-<div class="col-sm-4 plots" id="wykresy">
+<div class="col-sm-4 plots" id="plots">
     <h3>Wykresy</h3>
 
     <p>
