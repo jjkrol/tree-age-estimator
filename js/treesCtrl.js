@@ -1,11 +1,10 @@
 var app = angular.module('trees-app', ['ui.bootstrap']);
 //todo add readme
-// todo end translation
-// todo repair thumbnails
+// todo repair thumbnails and lightbox
 function TreesCtrl($scope, $http) {
-    $scope.result = 'Welcome!';
-    $scope.resultClass = 'alert alert-success';
-    $scope.explanation = 'Feel free to use the calculator on the left';
+    $scope.results = [{"age": 'Welcome!',
+        "class": 'alert alert-success',
+        "explanation": 'Feel free to fill in the details on the left and press calculate'}];
     $scope.resultsVisible = true;
 
     $http.get('js/trees.json').success(function (data) {
@@ -14,6 +13,7 @@ function TreesCtrl($scope, $http) {
     $http.get('js/alerts.json').success(function (data) {
         $scope.alerts = data;
     });
+
     $scope.updateCircumference = function () {
         if($scope.dbh != null && $scope.dbh != ""){
         $scope.circumference = Math.round($scope.dbh * Math.PI);
@@ -31,32 +31,37 @@ function TreesCtrl($scope, $http) {
         lukaszkiewicz = lukaszkiewicz($scope.chosenTree, $scope.dbh, $scope.height);
         majdecki = majdecki($scope.chosenTree, $scope.dbh);
         $scope.results = [];
-        if (lukaszkiewicz) {
-            $scope.results = [$scope.results, {"age": lukaszkiewicz,
+        console.log(lukaszkiewicz);
+        console.log(majdecki);
+        if (lukaszkiewicz != null) {
+            $scope.results.push({"age": lukaszkiewicz,
                 "class": "alert alert-success",
-                "explanation": "J. Łukaszkiewicz's model"}];
+                "explanation": "J. Łukaszkiewicz's model"});
         }
-        if (majdecki.age) {
-            $scope.results = [$scope.results, {"age": majdecki.age,
+        if (majdecki.age != null) {
+            $scope.results.push({"age": majdecki.age,
                 "class": "alert alert-info",
                 "explanation": "L. Majdecki's age table interpolation"
-            }];
+            });
         }
 
-        $scope.results = [$scope.results,
+        $scope.results.push(
             {"age": majdecki.lowerRange + " - " + majdecki.upperRange,
                 "class": "alert alert-warning",
                 "explanation": "age range from the age table by L. Majdecki"
-            }
-        ];
+            });
         $scope.resultsVisible = true;
 
     };
 
     function lukaszkiewicz(tree, dbh, height) {
-        exponent = tree.coeff.b + tree.coeff.c * dbh / 100 + tree.coeff.d * height;
-        age = -tree.coeff.a + Math.pow(Math.E, exponent);
-        return Math.round(age);
+        if (tree.coeff == null) {
+            return null
+        } else {
+            exponent = tree.coeff.b + tree.coeff.c * dbh / 100 + tree.coeff.d * height;
+            age = -tree.coeff.a + Math.pow(Math.E, exponent);
+            return Math.round(age);
+        }
     }
 
     var ageTableKeys = [20, 40, 70, 100, 120];
