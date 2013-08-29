@@ -1,5 +1,4 @@
-var app = angular.module('trees-app', ['ui.bootstrap']);
-//todo add readme
+angular.module('trees-app', ['ui.bootstrap']);
 function TreesCtrl($scope, $http) {
     $scope.results = [{"age": 'Welcome!',
         "class": 'alert alert-success',
@@ -91,5 +90,5 @@ function TreesCtrl($scope, $http) {
         }
         return {"age": null, "lowerRange": ageTableKeys[ageTableKeys.length - 1], "upperRange": "?"}
     }
-};
+}
 
