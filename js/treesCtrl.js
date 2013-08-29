@@ -1,6 +1,5 @@
 var app = angular.module('trees-app', ['ui.bootstrap']);
 //todo add readme
-// todo repair thumbnails and lightbox
 function TreesCtrl($scope, $http) {
     $scope.results = [{"age": 'Welcome!',
         "class": 'alert alert-success',
